@@ -1,13 +1,11 @@
-import Sequelize from 'sequelize';
+import { Model, ModelAttributes} from 'sequelize';
 
 import UserProperty from './user.property';
 
-const Model = Sequelize.Model;
-
 class User extends Model {
-    public static init(sequelize) {
-        return super.init(new UserProperty(sequelize), {
-            sequelize: sequelize,
+    public static init(sequelize: any, DataTypes: any) {
+        return super.init.call(this, <ModelAttributes>new UserProperty(DataTypes), {
+            sequelize,
             tableName: 'users',
             timestamps: true,
             paranoid: true,

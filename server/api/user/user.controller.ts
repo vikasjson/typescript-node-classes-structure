@@ -1,21 +1,30 @@
 import { Request, Response } from "express";
 
-class UserController {
-    constructor() {
+import SqlDB from "./../../conn/sqldb";
 
+class UserController {
+    db : any;
+    constructor() {
+        this.db = new SqlDB();
     }
 
-    public index = (req:Request, res:Response, next:any) => {
+    public index = async (req:Request, res:Response, next:any) => {
+        const { User } = this.db.models;
+        const users = await User.findAll();
+        console.log('Users', users);
         console.log('User Index Route Loaded Successfully');
-        res.send("<h1>Hey! Meena</h1> <h3>Welcome to Nodejs typescript classes</h3>");
+        return res.json(users);
     };
 
-    public show = (req:any, res:any, next:any) => {
+    public show = async (req:any, res:any, next:any) => {
+        const { User } = this.db.models;
+        const userId = req.params.id;
+        const user = await User.findByPk(userId);
         console.log('User show Route Loaded Successfully');
-        res.send("<h1>Hey! Meena</h1><h3>This is your detail controller function</h3>");
+        return res.json(user);
     };
 
-    public create = (req: Request, res: Response, next: any ) => {
+    public create = async (req: Request, res: Response, next: any ) => {
         console.log('This is create method');
         res.send("Create data");
     };
