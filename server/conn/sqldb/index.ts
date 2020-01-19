@@ -27,6 +27,21 @@ class SqlDB {
             Address: Address.init(sequelize, DataTypes)
         };
 
+        // For Model Association
+
+        // const models = {
+        //     First: FirstModel.init(sequelize, Sequelize),
+        //     Second: SecondModel.init(sequelize, Sequelize),
+        //     Third: ThirdModel.init(sequelize, Sequelize)
+        // };
+
+        // Run `.associate` if it exists,
+        // ie create relationships in the ORM
+
+        // Object.values(models)
+        //     .filter(model => typeof model.associate === "function")
+        //     .forEach(model => model.associate(models));
+
         const db = {
             Sequelize,
             sequelize,
