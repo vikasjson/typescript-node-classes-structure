@@ -28,7 +28,7 @@ class App {
         });
     }
 
-    private connect = (): Promise<any> => {
+    private connect = async (): Promise<any> => {
         return Promise.all([
             this.db.sequelize.authenticate()
         ]).catch(err => console.log({ 'Error starting': err }));
@@ -41,7 +41,7 @@ class App {
     private startServer = () => {
         const server = this.createNewServer(this.app);
         server.listen(3010, () => {
-            console.log('Hi Meena, server started on port: 3010')
+            console.log('Hi Meena, server started ✔ on port: 3010')
         })
     }
 }
