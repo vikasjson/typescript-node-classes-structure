@@ -9,7 +9,7 @@ class AddressController {
     }
 
     public index = async (req:Request, res:Response, next:any) => {
-        const { Address } = this.db.models;
+        const { Address } = this.db;
         const addresses = await Address.findAll();
         console.log('addresses', addresses);
         console.log('addresses Index Route Loaded Successfully');
@@ -17,7 +17,7 @@ class AddressController {
     };
 
     public show = async (req:any, res:any, next:any) => {
-        const { Address } = this.db.models;
+        const { Address } = this.db;
         const addressId = req.params.id;
         const address = await Address.findByPk(addressId);
         console.log('User show Route Loaded Successfully');

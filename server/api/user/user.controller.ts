@@ -9,7 +9,7 @@ class UserController {
     }
 
     public index = async (req:Request, res:Response, next:any) => {
-        const { User } = this.db.models;
+        const { User } = this.db;
         const users = await User.findAll();
         console.log('Users', users);
         console.log('User Index Route Loaded Successfully');
@@ -17,7 +17,7 @@ class UserController {
     };
 
     public show = async (req:any, res:any, next:any) => {
-        const { User } = this.db.models;
+        const { User } = this.db;
         const userId = req.params.id;
         const user = await User.findByPk(userId);
         console.log('User show Route Loaded Successfully');

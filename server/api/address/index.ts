@@ -8,7 +8,7 @@ class User {
         this.router.get('/', controller.index);
         // this.router.post('/', controller.create);
         // this.router.put('/:id', controller.update);
-        // this.router.get('/:id', controller.show);
+        this.router.get('/:id', controller.show);
         return this.router;
     }
 }

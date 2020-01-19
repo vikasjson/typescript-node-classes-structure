@@ -1,6 +1,8 @@
 import { Sequelize, Options, DataTypes } from 'sequelize';
+import _ from 'lodash';
 
 import User from './../../api/user/user.model';
+import Address from './../../api/address/address.model';
 
 class SqlDB {
     constructor() {
@@ -19,12 +21,16 @@ class SqlDB {
         };
 
         const sequelize: any = new Sequelize('mysql://root:Easy%402020@127.0.0.1/test_typescript', sqlDefaults);
+
+        const models = {
+            User: User.init(sequelize, DataTypes),
+            Address: Address.init(sequelize, DataTypes)
+        };
+
         const db = {
             Sequelize,
             sequelize,
-            models: {
-                User: User.init(sequelize, DataTypes)
-            }
+            ...models
         };
 
         return db;
